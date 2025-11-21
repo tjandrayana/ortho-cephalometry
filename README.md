@@ -4,6 +4,9 @@ A modern web application for computer-assisted cephalometric analysis for orthod
 
 > **Note**: This project is a modernized version of the original [cephalometric](https://github.com/alexcorvi/cephalometric) project by [alexcorvi](https://github.com/alexcorvi).
 
+
+⭐ **Before you use it, please give a star to support this project!** ⭐
+
 ## 🎯 Overview
 
 This application allows you to upload lateral cephalogram images and perform computer-assisted cephalometric analysis for orthodontic diagnostic purposes. The tool is designed for dental professionals to analyze cephalometric radiographs efficiently.
@@ -39,7 +42,7 @@ All class components have been converted to functional components using React ho
 - **Production builds**: `make build` - Simple production build command
 - **Cleanup**: `make clean` - Easy cleanup of build artifacts
 
-See the [Usage](#usage) section below for all available Makefile commands.
+See the [Available Makefile Commands](#available-makefile-commands) section below for all available Makefile commands.
 
 ## 📋 Features
 
