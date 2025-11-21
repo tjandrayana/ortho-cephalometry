@@ -2,10 +2,9 @@
 
 A modern web application for computer-assisted cephalometric analysis for orthodontic diagnostic use.
 
+### ⭐ **Before you use it, please give a star to support this project!** ⭐
+
 > **Note**: This project is a modernized version of the original [cephalometric](https://github.com/alexcorvi/cephalometric) project by [alexcorvi](https://github.com/alexcorvi).
-
-
-⭐ **Before you use it, please give a star to support this project!** ⭐
 
 ## 🎯 Overview
 
