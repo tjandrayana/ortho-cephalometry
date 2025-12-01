@@ -1,8 +1,23 @@
 # Ortho Cephalometry
 
-A modern web application for computer-assisted cephalometric analysis for orthodontic diagnostic use.
+## Introduction
+
+As a developer working in the healthcare technology space, I recently had the opportunity to modernize a legacy web application for **cephalometric analysis** - a crucial tool used by orthodontists for diagnostic purposes. The result is [**Ortho Cephalometry**](https://github.com/tjandrayana/ortho-cephalometry), a completely rebuilt, modern web application that maintains compatibility with the original while leveraging the latest web technologies.
+
+## What is Cephalometric Analysis?
+
+For those unfamiliar with orthodontics, **cephalometric analysis** is a diagnostic tool used to analyze the relationships between teeth, jaws, and facial structures. Orthodontists use lateral cephalogram X-rays (side-view head X-rays) to:
+
+- Measure angles and distances between specific anatomical points
+- Assess skeletal and dental relationships
+- Plan orthodontic treatment
+- Evaluate treatment progress
+
+This analysis involves placing specific points on the X-ray image and calculating various measurements using established methods like Downs Analysis, Steiner Analysis, Tweed's Triangle, and more.
+
 
 ### ⭐ **Before you use it, please give a star to support this project!** ⭐
+
 
 > **Note**: This project is a modernized version of the original [cephalometric](https://github.com/alexcorvi/cephalometric) project by [alexcorvi](https://github.com/alexcorvi).
 
@@ -12,36 +27,16 @@ This application allows you to upload lateral cephalogram images and perform com
 
 ## 🙏 Acknowledgments
 
-This project is based on and modernized from the original work by [alexcorvi](https://github.com/alexcorvi) available at [https://github.com/alexcorvi/cephalometric](https://github.com/alexcorvi/cephalometric). We gratefully acknowledge the original work and maintain compatibility with the original project file format and analysis methods.
+This project is a modernized version of the original [cephalometric](https://github.com/alexcorvi/cephalometric) project by [alexcorvi](https://github.com/alexcorvi). We maintain full compatibility with the original project file format and analysis methods.
 
-## ✨ What's New in This Version
+## ✨ What's New
 
-### 🚀 Modernized Technology Stack
-
-This version has been completely modernized with the latest web technologies:
-
+This version has been completely modernized with:
 - **Vite 5** - Lightning-fast build tool (replaced Webpack 4)
-- **React 18** - Latest React with functional components and hooks (upgraded from React 16 class components)
-- **TypeScript 5** - Latest TypeScript with improved type safety (upgraded from TypeScript 2.9)
-- **ESLint** - Modern linting tool (replaced TSLint)
-- **Sass (Dart Sass)** - Latest Sass compiler (replaced node-sass)
-- **MobX 6** - Latest MobX for state management (upgraded from MobX 5)
-
-All class components have been converted to functional components using React hooks, and the codebase now follows modern React patterns and best practices.
-
-### 🛠️ Enhanced Developer Experience
-
-**New Makefile Support** - The biggest addition to this repository is a comprehensive `Makefile` that makes it incredibly easy to run and manage the application. This sets it apart from the original project:
-
-- **Easy setup**: `make install` - Install all dependencies with one command
-- **Background development server**: `make dev-bg` - Run dev server in background with process management
-- **Background production preview**: `make preview-bg` - Run production build in background
-- **Process management**: `make status`, `make stop` - Check and stop running servers easily
-- **Log viewing**: `make logs` - View real-time logs from background processes
-- **Production builds**: `make build` - Simple production build command
-- **Cleanup**: `make clean` - Easy cleanup of build artifacts
-
-See the [Available Makefile Commands](#available-makefile-commands) section below for all available Makefile commands.
+- **React 18** - Functional components with hooks (upgraded from React 16 class components)
+- **TypeScript 5** - Improved type safety (upgraded from TypeScript 2.9)
+- **MobX 6** - Latest state management (upgraded from MobX 5)
+- **Comprehensive Makefile** - Easy project management with background process support
 
 ## 📋 Features
 
@@ -129,25 +124,21 @@ make stop-preview
 
 The built files will be in the `dist` directory.
 
-## 📖 Available Makefile Commands
+## 📖 Makefile Commands
 
 | Command | Description |
 |---------|-------------|
 | `make help` | Show all available commands |
 | `make install` | Install npm dependencies |
-| `make dev` | Run development server (foreground) |
-| `make dev-bg` | Run development server (background) |
+| `make dev` / `make dev-bg` | Run development server (foreground/background) |
 | `make stop` | Stop background development server |
 | `make build` | Build for production |
-| `make preview` | Preview production build (foreground) |
-| `make preview-bg` | Preview production build (background) |
+| `make preview` / `make preview-bg` | Preview production build (foreground/background) |
 | `make stop-preview` | Stop background preview server |
+| `make status` / `make status-preview` | Check server status |
+| `make logs` / `make logs-preview` | View server logs |
 | `make lint` | Run ESLint |
 | `make clean` | Clean build artifacts and log files |
-| `make status` | Check if dev server is running |
-| `make status-preview` | Check if preview server is running |
-| `make logs` | Show dev server logs |
-| `make logs-preview` | Show preview server logs |
 
 ## 🔧 Alternative Usage (without Makefile)
 
@@ -194,19 +185,13 @@ ortho-cephalometry/
 
 ## 🔄 Migration Notes
 
-If you're migrating from the original project, note these changes:
-
 - Project file format remains **completely compatible** - you can use `.cephalometric` files from the original project
 - Message protocol for iframe embedding remains the same (`cephalometric-open:`, `cephalometric-save:`)
 - All analysis methods and measurements are identical
-- The codebase has been refactored to use modern React patterns
 
 ## 🌐 Browser Support
 
-- **Chrome** (recommended) - Best compatibility
-- **Firefox** - Should work, but Chrome is recommended
-- **Safari** - Should work with modern versions
-- **Edge** - Should work with modern versions
+**Chrome** (recommended), **Firefox**, **Safari**, **Edge** - Modern versions supported
 
 ## 📝 License
 
@@ -218,15 +203,11 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 ## 📚 Resources
 
+- **Blog Post**: [Modernizing Cephalometric Analysis: Building a Web App for Orthodontic Diagnostics](https://dev.to/tj1609/modernizing-cephalometric-analysis-building-a-web-app-for-orthodontic-diagnostics-3lp7) - Read about the modernization journey on dev.to
 - Original project: [https://github.com/alexcorvi/cephalometric](https://github.com/alexcorvi/cephalometric)
 - Original demo: [http://cephalometric.apexo.app/](http://cephalometric.apexo.app/)
 
-## ⚠️ Limitations
-
-- Cross-browser compatibility issues may exist (works best on Google Chrome)
-- Requires modern browser with JavaScript enabled
+**Note**: This tool was originally part of a larger dental practice management application called Apexo. This version is a standalone, modernized implementation that maintains full compatibility with the original project format.
 
 ---
-
-**Note**: This tool was originally part of a larger dental practice management application called Apexo. This version is a standalone, modernized implementation that maintains full compatibility with the original project format.
 
