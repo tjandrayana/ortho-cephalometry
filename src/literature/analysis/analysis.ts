@@ -26,12 +26,7 @@ export class Analysis {
 	title: string = '';
 
 	constructor() {
-		makeObservable(this, {
-			requiredPoints: computed,
-			lines: computed,
-			anglesValues: computed,
-			DistanceValues: computed
-		});
+		makeObservable(this);
 	}
 
 	@computed
