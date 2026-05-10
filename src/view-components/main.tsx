@@ -3,10 +3,56 @@ import { AnalysisView } from './analysis-view';
 import { data } from '../data/data';
 import { observer } from 'mobx-react-lite';
 
+function getQueryParam(name: string): string | null {
+	return new URLSearchParams(window.location.search).get(name);
+}
+
+function loadCephalometricProject(raw: string) {
+	if (!raw.startsWith('cephalometric_project:')) return false;
+	const contents = raw.split('cephalometric_project:')[1];
+	const fileData: typeof data = JSON.parse(atob(contents));
+	data.imgSource = fileData.imgSource;
+	data.pointCoordinates = fileData.pointCoordinates;
+	data.currentAnalysisName = fileData.currentAnalysisName;
+	return true;
+}
+
 export const Main = observer(() => {
 	const inputRef = useRef<HTMLInputElement>(null);
 
 	useEffect(() => {
+		const apiBaseUrl = import.meta.env.VITE_API_BASE_URL as string | undefined;
+		if (apiBaseUrl) {
+			const appointmentId = getQueryParam('appointment_id');
+			if (appointmentId) {
+				(async () => {
+					try {
+						const res = await fetch(
+							`${apiBaseUrl}/api/patient-service/examination/cephalometry-by-appointment?appointment_id=${encodeURIComponent(appointmentId)}`
+						);
+						if (res.status === 200) {
+							const fileJson = await res.json();
+							if (fileJson?.file_cephalometry) {
+								loadCephalometricProject(atob(fileJson.file_cephalometry));
+							}
+						} else if (res.status === 404) {
+							data.imgSource.source = '/sample2.jpg';
+							const img = new Image();
+							img.onload = () => {
+								data.imgSource.height = img.height;
+								data.imgSource.width = img.width;
+							};
+							img.src = '/sample2.jpg';
+						} else {
+							console.error(`Error ${res.status}: ${res.statusText}`);
+						}
+					} catch (err) {
+						console.error('Failed to load cephalometry:', err);
+					}
+				})();
+			}
+		}
+
 		window.onmessage = function (e) {
 			let messageData = e.data;
 			if (!messageData) return;
