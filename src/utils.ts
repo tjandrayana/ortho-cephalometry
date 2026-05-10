@@ -124,7 +124,8 @@ export async function exportAndSend(apiUrl: string, appointmentId: string) {
 
 		const response = await fetch(apiUrl, {
 			method: 'POST',
-			body: formData
+			body: formData,
+			credentials: 'include'
 		});
 
 		if (!response.ok) {
@@ -150,7 +151,8 @@ export async function resetAnalysis() {
 			`/api/patient-service/examination/cephalometry-by-appointment?appointment_id=${encodeURIComponent(appointmentId)}`,
 			{
 				method: 'DELETE',
-				headers: { 'Content-Type': 'application/json' }
+				headers: { 'Content-Type': 'application/json' },
+				credentials: 'include'
 			}
 		);
 		if (res.ok && res.status === 200) {
