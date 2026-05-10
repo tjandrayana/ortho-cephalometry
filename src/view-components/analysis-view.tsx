@@ -326,6 +326,32 @@ export const AnalysisView = observer(() => {
 					⤓ Save image
 				</button>
 
+				{import.meta.env.VITE_API_BASE_URL && (
+					<>
+						<button
+							className="send-project"
+							onClick={() => {
+								const appointmentId = new URLSearchParams(window.location.search).get('appointment_id') || '';
+								utils.exportAndSend(
+									`${import.meta.env.VITE_API_BASE_URL}/api/patient-service/examination/cephalometry-by-appointment`,
+									appointmentId
+								);
+							}}
+						>
+							⤓ Simpan Hasil ke Rekam Medis
+						</button>
+
+						<button
+							className="reset-project"
+							onClick={() => {
+								utils.resetAnalysis();
+							}}
+						>
+							X Mulai Ulang Analisis
+						</button>
+					</>
+				)}
+
 				<button className={showResults ? 'show' : ''} onClick={() => setShowResults(!showResults)}>
 					☲ {showResults ? 'Hide results' : 'Show results'}
 				</button>
