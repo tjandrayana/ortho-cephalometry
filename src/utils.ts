@@ -140,14 +140,14 @@ export async function exportAndSend(apiUrl: string, appointmentId: string) {
 }
 
 export async function resetAnalysis() {
-	const apiBaseUrl = import.meta.env.VITE_API_BASE_URL;
+	const clinicApiUrl = import.meta.env.VITE_CLINIC_API_URL;
 	const appointmentId = getQueryParam('appointment_id');
-	if (!apiBaseUrl || !appointmentId) {
+	if (!clinicApiUrl || !appointmentId) {
 		return;
 	}
 	try {
 		const res = await fetch(
-			`${apiBaseUrl}/api/patient-service/examination/cephalometry-by-appointment?appointment_id=${encodeURIComponent(appointmentId)}`,
+			`${clinicApiUrl}/api/patient-service/examination/cephalometry-by-appointment?appointment_id=${encodeURIComponent(appointmentId)}`,
 			{
 				method: 'DELETE',
 				headers: { 'Content-Type': 'application/json' }

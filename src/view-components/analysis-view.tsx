@@ -326,14 +326,14 @@ export const AnalysisView = observer(() => {
 					⤓ Save image
 				</button>
 
-				{import.meta.env.VITE_API_BASE_URL && (
+				{import.meta.env.VITE_CLINIC_API_URL && (
 					<>
 						<button
 							className="send-project"
 							onClick={() => {
 								const appointmentId = new URLSearchParams(window.location.search).get('appointment_id') || '';
 								utils.exportAndSend(
-									`${import.meta.env.VITE_API_BASE_URL}/api/patient-service/examination/cephalometry-by-appointment`,
+									`${import.meta.env.VITE_CLINIC_API_URL}/api/patient-service/examination/cephalometry-by-appointment`,
 									appointmentId
 								);
 							}}
@@ -352,7 +352,11 @@ export const AnalysisView = observer(() => {
 					</>
 				)}
 
-				<button className={showResults ? 'show' : ''} onClick={() => setShowResults(!showResults)}>
+				<button
+					className={showResults ? 'show' : ''}
+					style={{ top: import.meta.env.VITE_CLINIC_API_URL ? '240px' : '150px' }}
+					onClick={() => setShowResults(!showResults)}
+				>
 					☲ {showResults ? 'Hide results' : 'Show results'}
 				</button>
 				<div className="results" style={{ display: showResults ? 'block' : 'none' }}>
