@@ -90,6 +90,16 @@ img {
 			z-index: 0;
 			top: 5px;
 		}
+
+		&.send-project {
+			z-index: 0;
+			top: 150px;
+		}
+
+		&.reset-project {
+			z-index: 0;
+			top: 195px;
+		}
 	}
 
 	.results {

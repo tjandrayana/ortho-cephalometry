@@ -21,7 +21,7 @@ export const Main = observer(() => {
 	const inputRef = useRef<HTMLInputElement>(null);
 
 	useEffect(() => {
-		const apiBaseUrl = import.meta.env.VITE_API_BASE_URL as string | undefined;
+		const apiBaseUrl = import.meta.env.VITE_CEPHALOMETRY_LOAD_URL as string | undefined;
 		if (apiBaseUrl) {
 			const appointmentId = getQueryParam('appointment_id');
 			if (appointmentId) {
