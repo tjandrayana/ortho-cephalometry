@@ -333,7 +333,7 @@ export const AnalysisView = observer(() => {
 							onClick={() => {
 								const appointmentId = new URLSearchParams(window.location.search).get('appointment_id') || '';
 								utils.exportAndSend(
-									`${import.meta.env.VITE_CLINIC_API_URL}/api/patient-service/examination/cephalometry-by-appointment`,
+									`/api/patient-service/examination/cephalometry-by-appointment`,
 									appointmentId
 								);
 							}}
