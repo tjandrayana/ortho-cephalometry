@@ -38,7 +38,7 @@ export const Main = observer(() => {
 				(async () => {
 					try {
 						const res = await fetch(
-							`${apiBaseUrl}/api/patient-service/examination/cephalometry-by-appointment?appointment_id=${encodeURIComponent(appointmentId)}`
+							`/api/patient-service/examination/cephalometry-by-appointment?appointment_id=${encodeURIComponent(appointmentId)}`
 						);
 						if (res.status === 200) {
 							const fileJson = await res.json();

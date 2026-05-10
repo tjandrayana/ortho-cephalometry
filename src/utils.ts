@@ -147,7 +147,7 @@ export async function resetAnalysis() {
 	}
 	try {
 		const res = await fetch(
-			`${clinicApiUrl}/api/patient-service/examination/cephalometry-by-appointment?appointment_id=${encodeURIComponent(appointmentId)}`,
+			`/api/patient-service/examination/cephalometry-by-appointment?appointment_id=${encodeURIComponent(appointmentId)}`,
 			{
 				method: 'DELETE',
 				headers: { 'Content-Type': 'application/json' }
