@@ -99,3 +99,68 @@ export function export2Base64() {
 	save(file, `${fileName || new Date().toLocaleDateString()}.cephalometric`);
 }
 
+function getQueryParam(name: string): string | null {
+	return new URLSearchParams(window.location.search).get(name);
+}
+
+export async function exportAndSend(apiUrl: string, appointmentId: string) {
+	try {
+		const base64Image = await divToBase64('#container');
+		const imageBlob = await (await fetch(base64Image)).blob();
+
+		const cephBase64 = btoa(
+			JSON.stringify({
+				imgSource: data.imgSource,
+				currentAnalysisName: data.currentAnalysisName,
+				pointCoordinates: data.pointCoordinates
+			})
+		);
+		const cephBlob = new Blob(['cephalometric_project:' + cephBase64], { type: 'text/plain' });
+
+		const formData = new FormData();
+		formData.append('appointment_id', appointmentId);
+		formData.append('image', imageBlob, 'hasil.png');
+		formData.append('cephalometry', cephBlob, 'hasil.cephalometry');
+
+		const response = await fetch(apiUrl, {
+			method: 'POST',
+			body: formData
+		});
+
+		if (!response.ok) {
+			throw new Error('Upload gagal: ' + response.statusText);
+		}
+
+		await response.json();
+		alert('Proses simpan sefalometri ke data pemeriksaan pasien berhasil !');
+	} catch (error: any) {
+		console.error('Error upload:', error);
+		alert('Upload gagal: ' + error.message);
+	}
+}
+
+export async function resetAnalysis() {
+	const apiBaseUrl = import.meta.env.VITE_API_BASE_URL;
+	const appointmentId = getQueryParam('appointment_id');
+	if (!apiBaseUrl || !appointmentId) {
+		return;
+	}
+	try {
+		const res = await fetch(
+			`${apiBaseUrl}/api/patient-service/examination/cephalometry-by-appointment?appointment_id=${encodeURIComponent(appointmentId)}`,
+			{
+				method: 'DELETE',
+				headers: { 'Content-Type': 'application/json' }
+			}
+		);
+		if (res.ok && res.status === 200) {
+			window.location.reload();
+		} else {
+			console.error(`Error ${res.status}: ${res.statusText}`);
+		}
+	} catch (error: any) {
+		console.error('Error reset:', error);
+		alert('Reset gagal: ' + error.message);
+	}
+}
+
