@@ -25,6 +25,16 @@ export const Main = observer(() => {
 		if (apiBaseUrl) {
 			const appointmentId = getQueryParam('appointment_id');
 			if (appointmentId) {
+				const loadSample = () => {
+					data.imgSource.source = '/sample2.jpg';
+					const img = new Image();
+					img.onload = () => {
+						data.imgSource.height = img.height;
+						data.imgSource.width = img.width;
+					};
+					img.src = '/sample2.jpg';
+				};
+
 				(async () => {
 					try {
 						const res = await fetch(
@@ -34,20 +44,18 @@ export const Main = observer(() => {
 							const fileJson = await res.json();
 							if (fileJson?.file_cephalometry) {
 								loadCephalometricProject(atob(fileJson.file_cephalometry));
+							} else {
+								loadSample();
 							}
-						} else if (res.status === 404) {
-							data.imgSource.source = '/sample2.jpg';
-							const img = new Image();
-							img.onload = () => {
-								data.imgSource.height = img.height;
-								data.imgSource.width = img.width;
-							};
-							img.src = '/sample2.jpg';
 						} else {
-							console.error(`Error ${res.status}: ${res.statusText}`);
+							if (res.status !== 404) {
+								console.error(`Error ${res.status}: ${res.statusText}`);
+							}
+							loadSample();
 						}
 					} catch (err) {
 						console.error('Failed to load cephalometry:', err);
+						loadSample();
 					}
 				})();
 			}
